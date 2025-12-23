@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>PT. Digital Teknologi Perkasa - Solusi Pertumbuhan Digital</title>
+    <meta name="description" content="Mitra strategis pengembangan teknologi, aplikasi mobile, dan website kustom untuk bisnis Anda.">
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    <link rel="shortcut icon" href="media/digitek putih.webp" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#f3f5ff',
+                            blue: '#256de9',
+                            dark: '#0C0C0D',
+                            red: '#DC2626',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+        /* Kondisi Awal: Transparan dan Blur */
+        opacity: 0;
+        filter: blur(15px);
+        /* Durasi dan tipe transisi (0.8 detik) */
+        transition: opacity 0.1s ease-out, filter 0.2s ease-out;
+        }
+
+        /* Kelas yang akan ditambahkan oleh JS */
+        body.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        body { background-color: #f3f5ff; }
+        .text-gradient-primary {
+            background: linear-gradient(to right, #1F83FF, #2A12FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-dark {
+            background: linear-gradient(to right, #0C0C0D, #6A7BBB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-nav {
+            background: rgba(243, 245, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hover-card { transition: all 0.3s ease; }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(31, 131, 255, 0.15);
+        }
+
+        /* Styles untuk Modern Popup */
+        #popup-overlay {
+            backdrop-filter: blur(4px);
+        }
+        .popup-card {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+        .popup-card.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .popup-header-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+        .success-icon-container {
+            background-color: #EBF5FF;
+        }
+        .error-icon-container {
+            background-color: #FEE2E2;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <div id="popup-overlay" class="fixed inset-0 bg-black/30 z-50 hidden flex items-center justify-center p-4">
+        
+        <div id="success-popup" class="popup-card bg-white p-8 text-center hidden">
+            <div class="flex flex-col items-center">
+                <div class="popup-header-icon success-icon-container mb-6">
+                    <i class="ph ph-check-circle text-brand-blue text-5xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-brand-blue mb-2">Berhasil!</h3>
+                <p class="text-gray-600 mb-6 text-sm leading-relaxed">Pesan Anda telah terkirim. Tim kami akan segera menghubungi Anda.</p>
+                <button onclick="closePopup()" class="w-full py-3 bg-brand-blue text-white font-bold rounded-lg hover:bg-blue-700 shadow-md hover:shadow-lg transition-all">
+                    Tutup
+                </button>
+            </div>
+        </div>
+
+        <div id="error-popup" class="popup-card bg-white p-8 text-center hidden">
+            <div class="flex flex-col items-center">
+                <div class="popup-header-icon error-icon-container mb-6">
+                    <i class="ph ph-x-circle text-brand-red text-5xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-brand-red mb-2">Oops!</h3>
+                <p id="error-message" class="text-gray-600 mb-6 text-sm leading-relaxed">Ada masalah saat mengirim pesan. Silakan coba lagi.</p>
+                <button onclick="closePopup()" class="w-full py-3 bg-brand-red text-white font-bold rounded-lg hover:bg-red-700 shadow-md hover:shadow-lg transition-all">
+                    Coba Lagi
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-2 group">
+                <img src="media/digitek.webp" 
+                    alt="Logo Digital Teknologi Perkasa" 
+                    class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#home" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Beranda</a>
+                
+                <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                <a href="services.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Layanan</a>
+                <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                <a href="blog.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Blog</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#home" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600">Layanan</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="contact.html" class="text-gray-600 font-semibold">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 lg:pr-12 mb-12 lg:mb-0 text-center lg:text-left">
+                    <h1 class="text-4xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                        <span class="text-gradient-primary">Mewujudkan Pertumbuhan Digital Anda</span> 
+                        <span class="text-gray-800">Melalui Solusi Teknologi Inovatif.</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        PT. Digital Teknologi Perkasa adalah mitra strategis Anda. Kami merancang, membangun, dan meluncurkan aplikasi mobile serta website kustom untuk mendorong efisiensi dan kesuksesan bisnis Anda di era digital.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="contact.html" class="px-8 py-4 bg-[#256de9] text-white font-semibold rounded-full shadow-xl shadow-blue-500/30 hover:scale-105 transition-transform text-center">
+                            Konsultasi Gratis Sekarang
+                        </a>
+                        <a href="#about" class="px-8 py-4 bg-white text-[#256de9] border border-[#256de9] font-semibold rounded-full hover:bg-blue-50 transition-colors text-center">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl transform rotate-3 opacity-20"></div>
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Team working on technology" 
+                             class="relative rounded-2xl shadow-2xl w-full object-cover h-[400px] lg:h-[500px]">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 order-2 lg:order-1">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Our Team" 
+                         class="rounded-2xl shadow-lg w-full h-auto">
+                </div>
+                <div class="lg:w-1/2 order-1 lg:order-2">
+                    <h2 class="text-3xl font-bold mb-4 text-gradient-dark">Menerjemahkan Visi Anda Menjadi Solusi Digital yang Bekerja.</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Di <strong>Digital Teknologi Perkasa</strong>, kami percaya teknologi hebat dimulai dari pemahaman mendalam. Tim kami terdiri dari profesional berpengalaman yang siap mengubah konsep Anda dari ide awal hingga peluncuran menjadi sistem yang fungsional dan kuat.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i class="ph ph-lightbulb text-xl"></i></div>
+                            <span class="font-semibold text-gray-800">Inovasi Berkelanjutan</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i class="ph ph-users-three text-xl"></i></div>
+                            <span class="font-semibold text-gray-800">Kemitraan Jangka Panjang</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i class="ph ph-shield-check text-xl"></i></div>
+                            <span class="font-semibold text-gray-800">Kualitas Terjamin</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i class="ph ph-rocket-launch text-xl"></i></div>
+                            <span class="font-semibold text-gray-800">Fokus pada Hasil</span>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-[#256de9] font-semibold hover:underline inline-flex items-center">
+                        Pelajari Visi & Misi Kami <i class="ph ph-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-[#f3f5ff]">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gradient-dark">Layanan Lengkap untuk Ekosistem Digital Anda</h2>
+                <p class="text-gray-600">Solusi end-to-end yang dirancang khusus untuk memenuhi kebutuhan spesifik bisnis Anda.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-card border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-[#256de9] mb-6 group-hover:bg-[#256de9] group-hover:text-white transition-colors">
+                        <i class="ph ph-device-mobile-camera text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Pengembangan Aplikasi</h3>
+                    <p class="text-gray-600 text-sm mb-4">Mengubah ide kompleks menjadi aplikasi mobile & desktop yang fungsional dan inovatif.</p>
+                    <a href="services.html" class="text-sm font-semibold text-[#256de9]">Lihat Detail →</a>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-card border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-[#256de9] mb-6 group-hover:bg-[#256de9] group-hover:text-white transition-colors">
+                        <i class="ph ph-globe text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Web Development</h3>
+                    <p class="text-gray-600 text-sm mb-4">Website responsif, cepat, dan SEO-friendly, dari company profile hingga e-commerce.</p>
+                    <a href="services.html" class="text-sm font-semibold text-[#256de9]">Lihat Detail →</a>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-card border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-[#256de9] mb-6 group-hover:bg-[#256de9] group-hover:text-white transition-colors">
+                        <i class="ph ph-paint-brush-broad text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">UI/UX & Backend</h3>
+                    <p class="text-gray-600 text-sm mb-4">Pengalaman pengguna yang memikat dengan desain intuitif dan arsitektur backend kokoh.</p>
+                    <a href="services.html" class="text-sm font-semibold text-[#256de9]">Lihat Detail →</a>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover-card border border-gray-100 group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-[#256de9] mb-6 group-hover:bg-[#256de9] group-hover:text-white transition-colors">
+                        <i class="ph ph-wrench text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Maintenance</h3>
+                    <p class="text-gray-600 text-sm mb-4">Jaminan kinerja optimal dengan layanan dukungan dan pemeliharaan purna jual.</p>
+                    <a href="services.html" class="text-sm font-semibold text-[#256de9]">Lihat Detail →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white overflow-hidden relative">
+        <div class="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-[#f3f5ff] to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold mb-12 text-center text-gradient-dark">Mengapa Harus Bermitra dengan Kami?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
+                    <i class="ph ph-cube-transparent text-3xl text-[#256de9] mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">Kustomisasi Menyeluruh</h4>
+                    <p class="text-sm text-gray-600">Bukan template. Solusi dibuat khusus untuk tujuan bisnis spesifik Anda.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
+                    <i class="ph ph-users text-3xl text-[#256de9] mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">Tim Ahli Profesional</h4>
+                    <p class="text-sm text-gray-600">Developer & designer berpengalaman dengan track record sukses.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
+                    <i class="ph ph-smiley text-3xl text-[#256de9] mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">User Centric</h4>
+                    <p class="text-sm text-gray-600">Fokus pada UX/UI intuitif untuk meningkatkan kepuasan pengguna.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
+                    <i class="ph ph-headset text-3xl text-[#256de9] mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">Support Handal</h4>
+                    <p class="text-sm text-gray-600">Partner jangka panjang. Kami menjaga stabilitas sistem Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 bg-[#f3f5ff]">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-gradient-dark mb-2">Hasil Karya yang Dipercaya</h2>
+                    <p class="text-gray-600">Beberapa proyek unggulan yang telah kami selesaikan.</p>
+                </div>
+                <a href="portfolio.html" class="hidden md:inline-block text-[#256de9] font-semibold hover:underline">Lihat Semua Portfolio</a>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-commerce App" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-blue-300 text-sm font-medium mb-1">Mobile Apps</span>
+                        <h3 class="text-white text-xl font-bold">Pesantren Smart Digital</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Corporate Website" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-blue-300 text-sm font-medium mb-1">Website E-Commerce</span>
+                        <h3 class="text-white text-xl font-bold">E-Lapak Pontren</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dashboard System" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-blue-300 text-sm font-medium mb-1">Sistem Informasi</span>
+                        <h3 class="text-white text-xl font-bold">Pesantren Smart Digital</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center md:hidden">
+                <a href="portfolio.html" class="btn-primary px-6 py-3 rounded-full text-sm">Lihat Semua Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-20 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
+                    Apa Kata <span class="text-[#256de9]">Klien Kami</span>?
+                </h2>
+                <p class="text-gray-600">Kepuasan klien adalah prioritas utama kami</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Mahfudz" class="w-14 h-14 rounded-full object-cover ring-2 ring-blue-100">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-lg">M. Mahfudz Nasir</h4>
+                            <p class="text-xs text-gray-500 font-medium">CTO Pesantren Smart Digital</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4 text-lg">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        "Digital Teknologi Perkasa tidak hanya membangun aplikasi, mereka memahami bisnis kami dan memberikan solusi yang benar-benar meningkatkan efisiensi operasional."
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Andri Prakoso" class="w-14 h-14 rounded-full object-cover ring-2 ring-blue-100">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-lg">Andri Prakoso</h4>
+                            <p class="text-xs text-gray-500 font-medium">Founder Fashionista Store</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4 text-lg">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        "Platform e-commerce yang mereka bangun sangat user-friendly dan performa tinggi. Conversion rate kami meningkat drastis setelah launching."
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Dr. Bambang Sutrisno" class="w-14 h-14 rounded-full object-cover ring-2 ring-blue-100">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-lg">Dr. Bambang Sutrisno</h4>
+                            <p class="text-xs text-gray-500 font-medium">Dekan Fakultas Teknologi</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4 text-lg">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        "Sistem informasi akademik yang dibangun sangat membantu administrasi kampus. Tim mereka sangat profesional dan responsif."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gradient-dark mb-12">Wawasan & Tren Teknologi</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="flex flex-col group cursor-pointer" onclick="window.location.href='blog.html'">
+                    <div class="overflow-hidden rounded-xl mb-4">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Mobile App Tips" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 mb-2 gap-2">
+                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Mobile App</span>
+                        <span>• 20 Nov 2024</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-[#256de9] transition-colors mb-2">5 Hal Sebelum Membangun Aplikasi Mobile</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">Pelajari langkah krusial agar aplikasi Anda tidak hanya rilis, tapi sukses di pasaran.</p>
+                </article>
+                <article class="flex flex-col group cursor-pointer" onclick="window.location.href='blog.html'">
+                    <div class="overflow-hidden rounded-xl mb-4">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="Web Dev" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 mb-2 gap-2">
+                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Website</span>
+                        <span>• 18 Nov 2024</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-[#256de9] transition-colors mb-2">Website Responsif: Keharusan di 2024</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">Mengapa Google lebih memprioritaskan website yang mobile-friendly?</p>
+                </article>
+                <article class="flex flex-col group cursor-pointer" onclick="window.location.href='blog.html'">
+                    <div class="overflow-hidden rounded-xl mb-4">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" alt="UI UX" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 mb-2 gap-2">
+                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">UI/UX</span>
+                        <span>• 15 Nov 2024</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-[#256de9] transition-colors mb-2">UI/UX yang Baik Meningkatkan Konversi</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">Desain bukan hanya soal estetika, tapi tentang bagaimana user membeli produk Anda.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Tidak Menemukan yang Anda Cari?</h2>
+            <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Kami juga menyediakan layanan kustom yang dirancang khusus sesuai dengan kebutuhan unik dan spesifik bisnis Anda.
+            </p>
+            <a href="contact.html" class="inline-block px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
+                Hubungi Kami untuk Konsultasi
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="media/digitek.webp" 
+                            alt="Logo Digital Teknologi Perkasa" 
+                            class="w-9 h-9 object-contain">
+                        <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#home" class="text-[#256de9] font-bold hover:font-extrabold">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Layanan Kami</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                        <li><a href="blog.html" class="hover:text-[#256de9] transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>+62 858-3984-5284</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="privacy-policy.html" class="hover:text-[#256de9] transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-[#256de9] transition-colors">Terms of Service</a>
+                    <a href="faq.html" class="hover:text-[#256de9] transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Navbar Effect on Scroll & Scroll Spy (LOGIKA BARU)
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener('scroll', () => {
+            // Navbar Shadow Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+
+            // Scroll Spy Logic
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                // Hapus kelas aktif dari semua link terlebih dahulu
+                link.classList.remove("text-[#256de9]", "font-bold");
+                link.classList.add("text-gray-600");
+
+                // Cek apakah link href cocok dengan ID section saat ini (misal: href="#home" cocok dengan id="home")
+                // Link eksternal seperti "about.html" tidak akan cocok dengan ID "#about", jadi tidak akan aktif.
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.remove("text-gray-600");
+                    link.classList.add("text-[#256de9]", "font-bold");
+                }
+            });
+            
+            // Fallback: Jika di paling atas halaman (scrollY < 100), pastikan Home aktif
+            if(window.scrollY < 100) {
+                 const homeLink = document.querySelector('a[href="#"]');
+                 if(homeLink) {
+                     homeLink.classList.remove("text-gray-600");
+                     homeLink.classList.add("text-[#256de9]", "font-bold");
+                 }
+            }
+        });
+
+        // 3. Modern Popup Logic
+        const popupOverlay = document.getElementById('popup-overlay');
+        const successPopup = document.getElementById('success-popup');
+        const errorPopup = document.getElementById('error-popup');
+        const errorMessage = document.getElementById('error-message');
+
+        function showModernPopup(type, message = "") {
+            successPopup.classList.add('hidden', 'active');
+            errorPopup.classList.add('hidden', 'active');
+            successPopup.classList.remove('active');
+            errorPopup.classList.remove('active');
+
+            popupOverlay.classList.remove('hidden');
+            
+            setTimeout(() => {
+                if (type === 'success') {
+                    successPopup.classList.remove('hidden');
+                    setTimeout(() => successPopup.classList.add('active'), 10);
+                } else {
+                    if (message) errorMessage.innerText = message;
+                    errorPopup.classList.remove('hidden');
+                    setTimeout(() => errorPopup.classList.add('active'), 10);
+                }
+            }, 10);
+        }
+
+        function closePopup() {
+            successPopup.classList.remove('active');
+            errorPopup.classList.remove('active');
+            setTimeout(() => {
+                popupOverlay.classList.add('hidden');
+                successPopup.classList.add('hidden');
+                errorPopup.classList.add('hidden');
+            }, 300);
+        }
+
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                closePopup();
+            }
+        });
+
+        // 4. Smooth Scroll for Anchor Links (Internal only)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add('hidden');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // 5. TAMBAHAN: Page Load Blur Animation Trigger
+        // Saat konten DOM sudah siap, kita tambahkan kelas 'page-loaded' ke body
+        // untuk memicu transisi CSS (opacity 0->1 dan blur 15px->0px).
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sedikit delay agar transisi terlihat oleh mata pengguna
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>
