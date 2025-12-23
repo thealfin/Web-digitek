@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - PT. Digital Teknologi Perkasa</title>
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            blue: '#256de9',
+                            red: '#DC2626',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* HAPUS filter dari body agar posisi fixed popup tidak rusak */
+        }
+
+        /* PINDAHKAN Animasi ke Wrapper Konten */
+        #main-content {
+            opacity: 0;
+            filter: blur(15px);
+            transition: opacity 0.5s ease-out, filter 0.5s ease-out;
+            will-change: opacity, filter;
+        }
+
+        #main-content.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        
+        /* Popup Styles */
+        #popup-overlay { backdrop-filter: blur(4px); }
+        .popup-card {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 1.5rem;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+        .popup-card.active { transform: scale(1); opacity: 1; }
+        .popup-header-icon {
+            display: flex; align-items: center; justify-content: center;
+            width: 64px; height: 64px; border-radius: 50%; margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-700 antialiased">
+
+    <main id="main-content">
+        
+        <nav class="fixed w-full z-50 glass-nav transition-all duration-300 bg-gray-50" id="navbar">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="flex items-center gap-2 group">
+                    <img src="media/digitek.webp" 
+                        alt="Logo Digital Teknologi Perkasa" 
+                        class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                    <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                    <a href="index.html" class="nav-link text-gray-600 text-[#256de9] hover:text-[#256de9] transition-colors">Beranda</a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                    <a href="services.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Layanan</a>
+                    <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                    <a href="blog.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Blog</a>
+                    <a href="#" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                        Hubungi Kami
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+                <div class="flex flex-col px-6 py-4 space-y-4">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                    <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                    <a href="services.html" class="text-gray-600 hover:text-blue-600">Layanan</a>
+                    <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-semibold">Hubungi Kami</a>
+                </div>
+            </div>
+        </nav>
+        
+        <header class="bg-[#EBF1FF] py-24 lg:py-32 text-center px-6">
+            <div class="container mx-auto">
+                <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+                    Mari <span class="text-[#256de9]">Berbicara</span> Tentang Proyek Anda
+                </h1>
+                <p class="text-gray-500 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
+                    Kami siap membantu mewujudkan visi digital Anda. Hubungi kami untuk konsultasi gratis dan temukan solusi terbaik.
+                </p>
+            </div>
+        </header>
+
+        <section id="contact" class="py-20 bg-gradient-to-b from-[#f3f5ff] to-blue-50 -mt-10 rounded-t-[3rem] relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <div class="flex flex-col lg:flex-row">
+                        
+                        <div class="lg:w-2/5 bg-[#256de9] text-white p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10"></div>
+                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-10 -mb-10"></div>
+
+                            <div>
+                                <h3 class="text-3xl font-bold mb-2">Mari Berbicara</h3>
+                                <p class="text-blue-100 mb-8">Diskusikan ide Anda dengan ahli kami dan dapatkan penawaran solusi terbaik.</p>
+                                
+                                <div class="space-y-6">
+                                    <a href="mailto:digitalteknologiperkasa.lampung@gmail.com" class="flex items-start gap-4 group hover:opacity-90 transition-opacity">
+                                        <div class="w-8 flex-shrink-0">
+                                            <i class="ph ph-envelope-simple text-2xl mt-1 group-hover:scale-110 transition-transform"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-blue-200 uppercase font-semibold tracking-wider">Email</p>
+                                            <p class="font-medium break-all">digitalteknologiperkasa.lampung@gmail.com</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://wa.me/6285839845284?text=Halo%20Digital%20Teknologi%20Perkasa,%20saya%20ingin%20konsultasi%20mengenai%20proyek%20saya." target="_blank" class="flex items-start gap-4 group hover:opacity-90 transition-opacity">
+                                        <div class="w-8 flex-shrink-0">
+                                            <i class="ph ph-whatsapp-logo text-2xl mt-1 group-hover:scale-110 transition-transform"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-blue-200 uppercase font-semibold tracking-wider">WhatsApp</p>
+                                            <p class="font-medium flex items-center gap-2">
+                                                +62 858-3984-5284
+                                            </p>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://maps.app.goo.gl/xxxxx" target="_blank" class="flex items-start gap-4 group hover:opacity-90 transition-opacity">
+                                        <div class="w-8 flex-shrink-0">
+                                            <i class="ph ph-map-pin text-2xl mt-1 group-hover:scale-110 transition-transform"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-blue-200 uppercase font-semibold tracking-wider">Lokasi</p>
+                                            <p class="font-medium leading-snug">
+                                                Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-12 flex gap-4">
+                                <a href="https://www.linkedin.com/company/digitek-perkasa/" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white hover:text-[#256de9] transition-all"><i class="ph ph-linkedin-logo text-xl"></i></a>
+                                <a href="https://www.instagram.com/digitekperkasa/" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white hover:text-[#256de9] transition-all"><i class="ph ph-instagram-logo text-xl"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="lg:w-3/5 p-10 lg:p-12">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Mulai Proyek Anda</h3>
+                            
+                            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                                
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                                        <input type="text" name="nama" placeholder="Nama Anda" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#256de9] focus:ring-2 focus:ring-blue-200 outline-none transition-all" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Perusahaan</label>
+                                        <input type="text" name="perusahaan" placeholder="Nama Perusahaan Anda" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#256de9] focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                                    </div>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                        <input type="email" name="email" placeholder="Email Anda" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#256de9] focus:ring-2 focus:ring-blue-200 outline-none transition-all" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">No. WhatsApp</label>
+                                        <input type="tel" name="whatsapp" placeholder="Nomor Anda" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#256de9] focus:ring-2 focus:ring-blue-200 outline-none transition-all" required>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Layanan yang Diminati</label>
+                                    <select name="layanan" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#256de9] focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white">
+                                        <option value="Mobile App">Pengembangan Aplikasi Mobile</option>
+                                        <option value="Website">Pembuatan Website</option>
+                                        <option value="Sistem Informasi">Sistem Informasi Custom</option>
+                                        <option value="UI/UX">UI/UX Design</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Pesan / Detail Proyek</label>
+                                    <textarea name="pesan" rows="4" placeholder="Ceritakan sedikit tentang kebutuhan Anda..." class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#256de9] focus:ring-2 focus:ring-blue-200 outline-none transition-all" required></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 bg-[#256de9] text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-1">
+                                    Kirim Pesan
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-gray-800">Lokasi <span class="text-[#256de9]">Kantor</span> Kami</h2>
+                </div>
+                
+                <div class="w-full max-w-5xl mx-auto bg-white p-2 rounded-3xl shadow-xl border border-gray-100">
+                    <div class="rounded-2xl overflow-hidden h-[400px] w-full relative z-0">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Perum+Graha+Madu+Pesona+Bandar+Lampung&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <img src="media/digitek.webp" 
+                                alt="Logo Digital Teknologi Perkasa" 
+                                class="w-9 h-9 object-contain">
+                            <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                        </div>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                            Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><a href="index.html" class="hover:text-[#256de9] transition-colors">Beranda</a></li>
+                            <li><a href="about.html" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                            <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                            <li><a href="blog.html" class="hover:text-[#256de9] transition-colors">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><a href="#" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                            <li><a href="#" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                            <li><a href="#" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                            <li><a href="#" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                                <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                                <span>+62 858-3984-5284</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                                <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                    <div class="flex gap-6 text-sm text-gray-500">
+                        <a href="privacy-policy.html" class="hover:text-[#256de9] transition-colors">Privacy Policy</a>
+                        <a href="terms.html" class="hover:text-[#256de9] transition-colors">Terms of Service</a>
+                        <a href="faq.html" class="hover:text-[#256de9] transition-colors">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div id="popup-overlay" class="fixed inset-0 bg-black/30 z-[100] hidden flex items-center justify-center p-4">
+        <div id="success-popup" class="popup-card bg-white p-8 text-center hidden max-w-sm w-full">
+            <div class="flex flex-col items-center">
+                <div class="popup-header-icon bg-blue-50 mb-6">
+                    <i class="ph ph-check-circle text-[#256de9] text-5xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-[#256de9] mb-2">Pesan Terkirim!</h3>
+                <p class="text-gray-600 mb-6 text-sm leading-relaxed">Terima kasih telah menghubungi kami. Tim kami akan segera membalas pesan Anda.</p>
+                <button onclick="closePopup()" class="w-full py-3 bg-[#256de9] text-white font-bold rounded-lg hover:bg-blue-700 transition-all">Tutup</button>
+            </div>
+        </div>
+        <div id="error-popup" class="popup-card bg-white p-8 text-center hidden max-w-sm w-full">
+            <div class="flex flex-col items-center">
+                <div class="popup-header-icon bg-red-50 mb-6">
+                    <i class="ph ph-x-circle text-red-600 text-5xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-red-600 mb-2">Gagal Mengirim</h3>
+                <p id="error-message" class="text-gray-600 mb-6 text-sm leading-relaxed">Terjadi kesalahan. Silakan coba lagi nanti.</p>
+                <button onclick="closePopup()" class="w-full py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all">Coba Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 2. Navbar Effect on Scroll & Scroll Spy
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener('scroll', () => {
+            // Navbar Shadow Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+
+            // Scroll Spy
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("text-gray-600", "font-bold");
+                link.classList.add("text-gray-600");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.remove("text-gray-600");
+                    link.classList.add("text-gray-600", "font-bold");
+                }
+            });
+        });
+        
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // POPUP LOGIC
+        const popupOverlay = document.getElementById('popup-overlay');
+        const successPopup = document.getElementById('success-popup');
+        const errorPopup = document.getElementById('error-popup');
+        const errorMessage = document.getElementById('error-message');
+
+        function showModernPopup(type, message = "") {
+            successPopup.classList.add('hidden', 'active');
+            errorPopup.classList.add('hidden', 'active');
+            successPopup.classList.remove('active');
+            errorPopup.classList.remove('active');
+
+            popupOverlay.classList.remove('hidden');
+            
+            setTimeout(() => {
+                if (type === 'success') {
+                    successPopup.classList.remove('hidden');
+                    setTimeout(() => successPopup.classList.add('active'), 10);
+                } else {
+                    if (message) errorMessage.innerText = message;
+                    errorPopup.classList.remove('hidden');
+                    setTimeout(() => errorPopup.classList.add('active'), 10);
+                }
+            }, 10);
+        }
+
+        function closePopup() {
+            successPopup.classList.remove('active');
+            errorPopup.classList.remove('active');
+            setTimeout(() => {
+                popupOverlay.classList.add('hidden');
+                successPopup.classList.add('hidden');
+                errorPopup.classList.add('hidden');
+            }, 300);
+        }
+
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) closePopup();
+        });
+
+        // FORM SUBMISSION
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const data = new FormData(form);
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Mengirim...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch("https://formspree.io/f/xeoyrkkr", {
+                    method: "POST",
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    showModernPopup('success');
+                } else {
+                    const jsonData = await response.json();
+                    showModernPopup('error', jsonData.error || "Ada masalah saat mengirim pesan.");
+                }
+            } catch (error) {
+                showModernPopup('error', "Terjadi kesalahan jaringan.");
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+        
+        // 5. Page Load Blur Animation Trigger (UPDATED SELECTOR)
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                // Sekarang targetnya adalah #main-content, bukan body
+                document.getElementById('main-content').classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>

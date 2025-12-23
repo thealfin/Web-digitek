@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - PT. Digital Teknologi Perkasa</title>
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            bg: '#f3f5ff',
+                            blue: '#256de9',
+                            dark: '#0C0C0D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+        /* Kondisi Awal: Transparan dan Blur */
+        opacity: 0;
+        filter: blur(15px);
+        /* Durasi dan tipe transisi (0.8 detik) */
+        transition: opacity 0.1s ease-out, filter 0.2s ease-out;
+        }
+
+        /* Kelas yang akan ditambahkan oleh JS */
+        body.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        body { background-color: #f3f5ff; font-family: 'Inter', sans-serif; }
+        
+        /* Accordion Animation */
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.active {
+            opacity: 1;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-btn[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="media/digitek.webp" 
+                    alt="Logo Digital Teknologi Perkasa" 
+                    class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="nav-link text-[#256de9] hover:text-[#256de9] transition-colors">Beranda</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                <a href="services.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Layanan</a>
+                <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                <a href="blog.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Blog</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600">Layanan</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="contact.html" class="text-gray-600 font-semibold">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Pertanyaan yang Sering Diajukan</h1>
+            <p class="text-lg text-gray-500 leading-relaxed">
+                Temukan jawaban cepat atas pertanyaan umum tentang layanan, proses pengembangan, dan kemitraan dengan PT. Digital Teknologi Perkasa.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-[#256de9] mb-6 flex items-center gap-2">
+                    <i class="ph-fill ph-info"></i> Umum
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Apa layanan utama PT. Digital Teknologi Perkasa?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Kami adalah perusahaan teknologi yang fokus pada pengembangan perangkat lunak kustom (Software House). Layanan utama kami meliputi pembuatan Aplikasi Mobile (Android & iOS), Pengembangan Website (Company Profile, E-commerce, Web App), Desain UI/UX, dan Konsultasi IT untuk transformasi digital bisnis Anda.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Di mana lokasi kantor Digital Teknologi Perkasa?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Kantor kami berlokasi di Bandar Lampung, tepatnya di Perum Graha Madu Pesona Blok C No.31, Kec. Tanjung Senang. Namun, kami melayani klien dari seluruh Indonesia secara remote maupun pertemuan langsung jika diperlukan.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-[#256de9] mb-6 flex items-center gap-2">
+                    <i class="ph-fill ph-code"></i> Layanan & Teknis
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Berapa lama waktu yang dibutuhkan untuk membuat website atau aplikasi?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Waktu pengerjaan sangat bervariasi tergantung pada kompleksitas fitur. 
+                                <ul class="list-disc pl-5 mt-2 space-y-1">
+                                    <li><strong>Landing Page / Company Profile:</strong> 1 - 2 minggu.</li>
+                                    <li><strong>Website Toko Online / Sistem Informasi:</strong> 1 - 2 bulan.</li>
+                                    <li><strong>Aplikasi Mobile Kustom:</strong> 2 - 4 bulan atau lebih.</li>
+                                </ul>
+                                Kami akan memberikan timeline detail setelah berdiskusi mengenai kebutuhan proyek Anda.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Apakah saya akan mendapatkan Source Code?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Ya, untuk proyek pengembangan kustom (Dedicated Development), klien berhak mendapatkan Source Code penuh setelah pembayaran lunas, kecuali disepakati lain dalam kontrak (misalnya untuk layanan berbasis langganan/SaaS).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Apakah ada layanan maintenance (pemeliharaan)?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Tentu. Kami memberikan garansi <i>bug fixing</i> gratis selama periode tertentu (biasanya 1-3 bulan pasca rilis). Setelah itu, kami menawarkan paket maintenance opsional untuk pemantauan server, update keamanan, dan backup rutin agar sistem Anda tetap berjalan optimal.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-[#256de9] mb-6 flex items-center gap-2">
+                    <i class="ph-fill ph-currency-dollar"></i> Harga & Kerjasama
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Berapa biaya pembuatan aplikasi/website?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Biaya sangat bergantung pada spesifikasi teknis dan fitur yang diinginkan. Kami tidak menggunakan sistem "satu harga untuk semua". Silakan hubungi kami untuk konsultasi gratis, dan kami akan memberikan penawaran harga yang transparan sesuai anggaran dan kebutuhan Anda.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <button class="accordion-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-gray-800 text-lg">Bagaimana sistem pembayarannya?</span>
+                            <i class="ph ph-caret-down accordion-icon text-gray-400 text-xl"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="pb-5 text-gray-600 leading-relaxed">
+                                Umumnya kami menerapkan sistem termin (bertahap). Contoh standar:
+                                <ul class="list-disc pl-5 mt-2 space-y-1">
+                                    <li><strong>DP (Down Payment):</strong> 30-50% di awal sebagai tanda jadi.</li>
+                                    <li><strong>Progress/Beta:</strong> Termin kedua setelah tahap pengembangan tertentu.</li>
+                                    <li><strong>Pelunasan:</strong> Sisa pembayaran setelah serah terima (UAT) selesai.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#256de9] rounded-2xl p-8 md:p-12 text-center text-white shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-white opacity-10 rounded-full -mr-10 -mt-10"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -ml-10 -mb-10"></div>
+                
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 relative z-10">Masih punya pertanyaan lain?</h3>
+                <p class="text-blue-100 mb-8 max-w-xl mx-auto relative z-10">Tim kami siap menjawab segala kebutuhan teknis dan bisnis Anda secara langsung.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+                    <a href="contact.html" class="px-8 py-3 bg-white text-[#256de9] font-bold rounded-full hover:bg-gray-100 transition-colors shadow-lg">
+                        Hubungi Kami
+                    </a>
+                    <a href="https://wa.me/6285839845284" class="px-8 py-3 bg-transparent border border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors">
+                        Chat WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="media/digitek.webp" 
+                            alt="Logo Digital Teknologi Perkasa" 
+                            class="w-9 h-9 object-contain">
+                        <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-[#256de9] transition-colors">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                        <li><a href="blog.html" class="hover:text-[#256de9] transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                        <li><a href="#" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                        <li><a href="#" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>+62 858-3984-5284</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="privacy-policy.html" class="hover:text-[#256de9] transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-[#256de9] transition-colors">Terms of Service</a>
+                    <a href="faq.html" class="text-[#256de9] font-semibold transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Accordion Logic
+        const accordions = document.querySelectorAll('.accordion-btn');
+
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                // Toggle current state
+                const content = this.nextElementSibling;
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                // Close all other accordions (Optional - 'Accordion' behavior vs 'Expand' behavior)
+                // Uncomment lines below if you want only one open at a time
+                /*
+                accordions.forEach(otherAcc => {
+                    if (otherAcc !== this) {
+                        otherAcc.setAttribute('aria-expanded', 'false');
+                        otherAcc.nextElementSibling.style.maxHeight = null;
+                        otherAcc.nextElementSibling.classList.remove('active');
+                    }
+                });
+                */
+
+                // Toggle logic
+                this.setAttribute('aria-expanded', !isExpanded);
+                content.classList.toggle('active');
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null; // Close
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px"; // Open
+                }
+            });
+        });
+        // 2. Navbar Effect on Scroll & Scroll Spy
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener('scroll', () => {
+            // Navbar Shadow Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+
+            // Scroll Spy
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("text-[#256de9]", "font-bold");
+                link.classList.add("text-gray-600");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.remove("text-gray-600");
+                    link.classList.add("text-[#256de9]", "font-bold");
+                }
+            });
+        });
+        // 5. TAMBAHAN: Page Load Blur Animation Trigger
+        // Saat konten DOM sudah siap, kita tambahkan kelas 'page-loaded' ke body
+        // untuk memicu transisi CSS (opacity 0->1 dan blur 15px->0px).
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sedikit delay agar transisi terlihat oleh mata pengguna
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>

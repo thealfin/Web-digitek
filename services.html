@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Layanan - Digital Teknologi Perkasa</title>
+  <link rel="icon" href="media/digitek putih.webp">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f3f5ff] font-sans text-gray-800">
+  <header class="p-6 bg-white shadow">
+    <div class="container mx-auto">
+      <a href="index.html" class="font-bold">Digital Teknologi Perkasa</a>
+    </div>
+  </header>
+  <main class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Layanan Kami</h1>
+    <p class="text-gray-600 mb-6">Kami menyediakan layanan pengembangan aplikasi, web, UI/UX, dan konsultasi IT.</p>
+  </main>
+  <footer class="p-6 text-sm text-gray-500">© 2025 PT. Digital Teknologi Perkasa</footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Layanan Kami - PT. Digital Teknologi Perkasa</title>
+    <meta name="description" content="Jelajahi layanan teknologi lengkap kami: Pengembangan Aplikasi, Website, UI/UX Design, dan Maintenance Sistem.">
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    <link rel="shortcut icon" href="media/digitek putih.webp" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            bg: '#f3f5ff',
+                            blue: '#256de9',
+                            dark: '#0C0C0D',
+                            red: '#DC2626',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>       
+        body {
+        /* Kondisi Awal: Transparan dan Blur */
+        opacity: 0;
+        filter: blur(15px);
+        /* Durasi dan tipe transisi (0.8 detik) */
+        transition: opacity 0.1s ease-out, filter 0.2s ease-out;
+        }
+
+        /* Kelas yang akan ditambahkan oleh JS */
+        body.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        body { background-color: #f3f5ff; }
+        .text-gradient-primary {
+            background: linear-gradient(to right, #1F83FF, #2A12FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-dark {
+            background: linear-gradient(to right, #0C0C0D, #6A7BBB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-nav {
+            background: rgba(243, 245, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hover-card { transition: all 0.3s ease; }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(31, 131, 255, 0.15);
+        }
+        /* Style khusus untuk Tech Pills */
+        .tech-pill {
+            @apply px-4 py-1.5 rounded-full border border-blue-200 text-[#256de9] text-sm font-medium hover:bg-blue-50 transition-colors cursor-default;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="media/digitek.webp" 
+                    alt="Logo Digital Teknologi Perkasa" 
+                    class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Beranda</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                <a href="#" class="nav-link text-blue-600 font-bold transition-colors">Layanan</a>
+                <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                <a href="blog.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Blog</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                <a href="#" class="text-blue-600 font-bold">Layanan</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 font-semibold">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden bg-white">
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-4xl lg:text-6xl font-extrabold mb-6 leading-tight text-gray-900">
+                Solusi Teknologi <span class="text-[#256de9]">End-to-End</span> <br>untuk Bisnis Anda
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Dari konsep hingga peluncuran, kami menyediakan layanan komprehensif untuk memenuhi semua kebutuhan digital Anda agar siap bersaing di era modern.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 bg-[#f3f5ff]">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white mb-6">
+                        <i class="ph ph-device-mobile-camera text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Pengembangan Aplikasi & Sistem</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        Kami mengubah ide kompleks menjadi aplikasi yang fungsional dan inovatif untuk mobile dan desktop.
+                    </p>
+                    <a href="#app-dev" class="text-[#256de9] font-semibold text-sm hover:underline flex items-center gap-1">
+                        Lihat Detail <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white mb-6">
+                        <i class="ph ph-globe text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Pengembangan Website Strategis</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        Bangun website responsif, cepat, dan SEO-friendly, dari company profile hingga e-commerce.
+                    </p>
+                    <a href="#web-dev" class="text-[#256de9] font-semibold text-sm hover:underline flex items-center gap-1">
+                        Lihat Detail <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white mb-6">
+                        <i class="ph ph-palette text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Desain UI/UX & Backend</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        Ciptakan pengalaman pengguna yang memikat dengan desain intuitif dan arsitektur backend yang kokoh.
+                    </p>
+                    <a href="#uiux" class="text-[#256de9] font-semibold text-sm hover:underline flex items-center gap-1">
+                        Lihat Detail <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover-card">
+                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white mb-6">
+                        <i class="ph ph-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Maintenance & Dukungan</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        Jaminan kinerja optimal dengan layanan dukungan dan pemeliharaan purna jual yang andal.
+                    </p>
+                    <a href="#maintenance" class="text-[#256de9] font-semibold text-sm hover:underline flex items-center gap-1">
+                        Lihat Detail <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="app-dev" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl">
+                         <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Mobile App Development" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-[#256de9] mb-6">
+                        <i class="ph ph-device-mobile-camera text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900">Pengembangan Aplikasi & Sistem</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Apakah operasi bisnis Anda terhambat oleh sistem yang kaku dan tidak terintegrasi? Kami membangun aplikasi dan sistem informasi dari nol yang dirancang khusus untuk mengotomatiskan proses, meningkatkan efisiensi, dan memberikan wawasan data yang berharga.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Fitur Utama:</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Aplikasi Mobile iOS & Android</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Sistem Informasi Terintegrasi</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Dashboard & Analytics</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> API Development</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Teknologi yang Kami Gunakan:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill">React Native</span>
+                            <span class="tech-pill">Flutter</span>
+                            <span class="tech-pill">Node.js</span>
+                            <span class="tech-pill">Python</span>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="inline-block px-8 py-3 bg-[#256de9] text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all">
+                        Diskusikan Kebutuhan Anda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="web-dev" class="py-20 bg-[#f3f5ff]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Web Development" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-[#256de9] mb-6">
+                        <i class="ph ph-globe text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900">Pengembangan Website Strategis</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Di era digital, website adalah toko dan kartu nama utama Anda. Kami memastikan ia meninggalkan kesan yang tepat dengan desain elegan, performa tinggi, dan optimasi SEO.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Fitur Utama:</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Company Profile & Landing Page</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> E-commerce Platform</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> WordPress CMS</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> SEO Optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Teknologi yang Kami Gunakan:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill">React.js</span>
+                            <span class="tech-pill">Next.js</span>
+                            <span class="tech-pill">WordPress</span>
+                            <span class="tech-pill">TailwindCSS</span>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="inline-block px-8 py-3 bg-[#256de9] text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all">
+                        Diskusikan Kebutuhan Anda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="uiux" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1586717791821-3f44a5638d48?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="UI/UX Design" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-[#256de9] mb-6">
+                        <i class="ph ph-palette text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900">Desain UI/UX & Backend</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Desain yang memikat mata dan backend yang kuat adalah kombinasi sempurna untuk kesuksesan digital. Kami melakukan riset pengguna, membuat prototype, dan membangun sistem backend yang scalable.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Fitur Utama:</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> User Research & Testing</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Wireframe & Prototype</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> RESTful API Development</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Database Architecture</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Teknologi yang Kami Gunakan:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill">Figma</span>
+                            <span class="tech-pill">Adobe XD</span>
+                            <span class="tech-pill">PostgreSQL</span>
+                            <span class="tech-pill">MongoDB</span>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="inline-block px-8 py-3 bg-[#256de9] text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all">
+                        Diskusikan Kebutuhan Anda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maintenance" class="py-20 bg-[#f3f5ff]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl">
+                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="System Maintenance" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-[#256de9] mb-6">
+                        <i class="ph ph-wrench text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900">Maintenance & Dukungan</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Website/aplikasi yang tidak terawat rentan terhadap bug, peretasan, dan penurunan performa. Kami menyediakan layanan maintenance 24/7 untuk memastikan aset digital Anda selalu dalam kondisi prima.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Fitur Utama:</h4>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Monitoring 24/7</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Update & Backup Rutin</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Bug Fixing</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[#256de9]"></i> Performance Optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3">Teknologi yang Kami Gunakan:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill">Docker</span>
+                            <span class="tech-pill">Kubernetes</span>
+                            <span class="tech-pill">AWS</span>
+                            <span class="tech-pill">Google Cloud</span>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="inline-block px-8 py-3 bg-[#256de9] text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all">
+                        Diskusikan Kebutuhan Anda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Tidak Menemukan yang Anda Cari?</h2>
+            <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Kami juga menyediakan layanan kustom yang dirancang khusus sesuai dengan kebutuhan unik dan spesifik bisnis Anda.
+            </p>
+            <a href="contact.html" class="inline-block px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
+                Hubungi Kami untuk Konsultasi
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="media/digitek.webp" 
+                            alt="Logo Digital Teknologi Perkasa" 
+                            class="w-9 h-9 object-contain">
+                        <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-[#256de9] transition-colors">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                        <li><a href="blog.html" class="hover:text-[#256de9] transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#app-dev" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                        <li><a href="#web-dev" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                        <li><a href="#uiux" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                        <li><a href="#maintenance" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>+62 858-3984-5284</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="privacy-policy.html" class="hover:text-[#256de9] transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-[#256de9] transition-colors">Terms of Service</a>
+                    <a href="faq.html" class="hover:text-[#256de9] transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        // 2. Navbar Effect on Scroll & Scroll Spy
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener('scroll', () => {
+            // Navbar Shadow Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+
+            // Scroll Spy
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("text-[#256de9]", "font-bold");
+                link.classList.add("text-gray-600");
+                if (link.getAttribute("href=#").includes(current)) {
+                    link.classList.remove("text-gray-600");
+                    link.classList.add("text-[#256de9]", "font-bold");
+                }
+            });
+        });
+        // 5. TAMBAHAN: Page Load Blur Animation Trigger
+        // Saat konten DOM sudah siap, kita tambahkan kelas 'page-loaded' ke body
+        // untuk memicu transisi CSS (opacity 0->1 dan blur 15px->0px).
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sedikit delay agar transisi terlihat oleh mata pengguna
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>

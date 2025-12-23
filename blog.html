@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Blog & Wawasan - PT. Digital Teknologi Perkasa</title>
+    <meta name="description" content="Artikel, tips, dan panduan dari para ahli kami untuk membantu Anda tetap update dengan dunia teknologi.">
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    <link rel="shortcut icon" href="media/digitek putih.webp" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'], // Font untuk artikel agar enak dibaca
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#f3f5ff',
+                            blue: '#256de9',
+                            dark: '#0C0C0D',
+                            red: '#DC2626',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+        /* Kondisi Awal: Transparan dan Blur */
+        opacity: 0;
+        filter: blur(15px);
+        /* Durasi dan tipe transisi (0.8 detik) */
+        transition: opacity 0.1s ease-out, filter 0.2s ease-out;
+        }
+
+        /* Kelas yang akan ditambahkan oleh JS */
+        body.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        body { background-color: #f3f5ff; }
+        .text-gradient-primary {
+            background: linear-gradient(to right, #1F83FF, #2A12FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-dark {
+            background: linear-gradient(to right, #0C0C0D, #6A7BBB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-nav {
+            background: rgba(243, 245, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hover-card { transition: all 0.3s ease; }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(31, 131, 255, 0.15);
+        }
+        
+        /* Article Styles */
+        .article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #374151;
+            font-size: 1.125rem;
+        }
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Hide Scrollbar for cleaner look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="media/digitek.webp" 
+                    alt="Logo Digital Teknologi Perkasa" 
+                    class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Beranda</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                <a href="services.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Layanan</a>
+                <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                <a href="#" class="nav-link text-[#256de9] font-bold transition-colors">Blog</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600">Layanan</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                <a href="#" class="text-blue-600 font-bold">Blog</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 font-semibold">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="blog-header" class="relative pt-32 pb-12 lg:pt-40 lg:pb-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-3xl lg:text-5xl font-extrabold mb-6 leading-tight">
+                Wawasan & <span class="text-gradient-primary">Tren Teknologi</span> Terkini
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+                Artikel, tips, dan panduan dari para ahli kami untuk membantu Anda tetap update dengan dunia teknologi.
+            </p>
+
+            <div class="max-w-xl mx-auto relative group">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="ph ph-magnifying-glass text-gray-400 text-xl group-focus-within:text-[#256de9] transition-colors"></i>
+                </div>
+                <input type="text" id="searchInput" onkeyup="handleSearch()" 
+                    placeholder="Cari topik, tips, atau teknologi..." 
+                    class="w-full pl-12 pr-4 py-4 rounded-full border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#256de9] focus:ring-4 focus:ring-blue-50 outline-none transition-all shadow-sm text-gray-700">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-[#f3f5ff] min-h-screen">
+        <div class="container mx-auto px-6">
+            
+            <div id="grid-view" class="transition-opacity duration-300">
+                <div class="flex flex-wrap justify-center gap-3 mb-12" id="filterContainer">
+                    </div>
+
+                <div id="articlesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    </div>
+                
+                <div id="emptyState" class="hidden text-center py-20">
+                    <div class="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 text-[#256de9]">
+                        <i class="ph ph-magnifying-glass text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Tidak ada artikel ditemukan</h3>
+                    <p class="text-gray-500">Coba gunakan kata kunci lain atau pilih kategori berbeda.</p>
+                </div>
+            </div>
+
+            <div id="article-view" class="hidden bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden max-w-4xl mx-auto relative">
+                
+                <div class="h-1 bg-gray-100 w-full fixed top-[72px] left-0 z-40">
+                    <div id="readProgress" class="h-full bg-[#256de9] w-0 transition-all duration-100"></div>
+                </div>
+
+                <button onclick="closeArticle()" class="absolute top-24 left-6 z-20 bg-white/90 backdrop-blur text-gray-800 hover:text-[#256de9] py-2 px-4 rounded-full shadow-md font-semibold text-sm flex items-center gap-2 transition-all hover:-translate-x-1 border border-gray-100">
+                    <i class="ph ph-arrow-left text-lg"></i> Kembali ke Blog
+                </button>
+
+                <div class="h-[400px] w-full relative">
+                    <img id="full-img" src="" alt="Cover" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 p-8 lg:p-12 w-full text-white">
+                        <span id="full-category" class="inline-block px-3 py-1 bg-[#256de9] text-white text-xs font-bold rounded-full mb-4">Category</span>
+                        <h1 id="full-title" class="text-3xl lg:text-5xl font-bold leading-tight mb-6 font-serif">Title Here</h1>
+                        
+                        <div class="flex items-center gap-4 text-sm text-gray-200">
+                            <div class="flex items-center gap-2">
+                                <i class="ph ph-user-circle text-xl"></i>
+                                <span id="full-author">Author Name</span>
+                            </div>
+                            <span>•</span>
+                            <div class="flex items-center gap-2">
+                                <i class="ph ph-calendar-blank text-xl"></i>
+                                <span id="full-date">Date</span>
+                            </div>
+                            <span>•</span>
+                            <div class="flex items-center gap-2">
+                                <i class="ph ph-clock text-xl"></i>
+                                <span id="full-readtime">5 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 lg:p-12">
+                    <div class="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+                        <span class="text-sm font-semibold text-gray-500">Bagikan:</span>
+                        <button class="w-9 h-9 rounded-full bg-blue-50 text-[#256de9] flex items-center justify-center hover:bg-[#256de9] hover:text-white transition-colors"><i class="ph ph-facebook-logo"></i></button>
+                        <button class="w-9 h-9 rounded-full bg-blue-50 text-[#256de9] flex items-center justify-center hover:bg-[#256de9] hover:text-white transition-colors"><i class="ph ph-twitter-logo"></i></button>
+                        <button class="w-9 h-9 rounded-full bg-blue-50 text-[#256de9] flex items-center justify-center hover:bg-[#256de9] hover:text-white transition-colors"><i class="ph ph-linkedin-logo"></i></button>
+                        <button class="w-9 h-9 rounded-full bg-blue-50 text-[#256de9] flex items-center justify-center hover:bg-[#256de9] hover:text-white transition-colors"><i class="ph ph-whatsapp-logo"></i></button>
+                    </div>
+
+                    <div id="full-content" class="article-content font-serif text-gray-700">
+                        </div>
+
+                    <div class="mt-12 pt-8 border-t border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-4">Tags:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded text-sm hover:bg-gray-200 cursor-pointer">#Teknologi</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded text-sm hover:bg-gray-200 cursor-pointer">#Digital</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded text-sm hover:bg-gray-200 cursor-pointer">#Bisnis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 bg-[#256de9] relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -ml-20 -mb-20"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="max-w-2xl mx-auto">
+                <i class="ph ph-envelope-open text-5xl text-blue-200 mb-4"></i>
+                <h2 class="text-3xl font-bold text-white mb-4">Jangan Lewatkan Update Terbaru</h2>
+                <p class="text-blue-100 mb-8">Dapatkan notifikasi artikel terbaru, tips teknologi, dan wawasan bisnis langsung di inbox Anda. Gratis dan bebas spam.</p>
+                
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Masukkan alamat email Anda" class="flex-1 px-6 py-4 rounded-full text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-lg">
+                    <button type="button" class="px-8 py-4 bg-gray-900 text-white font-bold rounded-full hover:bg-gray-800 transition-colors shadow-lg flex items-center justify-center gap-2">
+                        Langganan <i class="ph ph-paper-plane-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="media/digitek.webp" alt="Logo Digital Teknologi Perkasa" class="w-9 h-9 object-contain">
+                        <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="index.html#home" class="hover:text-[#256de9] transition-colors">Beranda</a></li>
+                        <li><a href="index.html#about" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                        <li><a href="#" class="text-[#256de9] font-bold">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>+62 858-3984-5284</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="privacy-policy.html" class="hover:text-[#256de9] transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-[#256de9] transition-colors">Terms of Service</a>
+                    <a href="faq.html" class="hover:text-[#256de9] transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Navbar Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+            // Update Reading Progress Bar
+            if(!document.getElementById('article-view').classList.contains('hidden')){
+                const scrollTop = window.scrollY;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('readProgress').style.width = scrollPercent + '%';
+            }
+        });
+
+        // 2. BLOG DATA & LOGIC
+        const articles = [
+            {
+                id: 1,
+                title: '5 Hal yang Harus Dipertimbangkan Sebelum Membangun Aplikasi Mobile',
+                category: 'Aplikasi Mobile',
+                image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+                author: 'Ahmad Fauzi',
+                date: '2024-01-15',
+                readTime: '5 menit',
+                excerpt: 'Membangun aplikasi mobile memerlukan perencanaan matang. Pelajari 5 hal penting yang harus Anda pertimbangkan agar investasi Anda tidak sia-sia.',
+                content: `
+                    <p>Membangun aplikasi mobile bukan hanya soal coding. Ini tentang memahami pasar, pengguna, dan tujuan bisnis Anda. Sebelum Anda mulai menyewa developer, pertimbangkan 5 hal krusial berikut ini.</p>
+                    <h2>1. Kenali Target Pengguna Anda</h2>
+                    <p>Siapa yang akan menggunakan aplikasi ini? Apakah mereka anak muda yang tech-savvy atau profesional yang sibuk? UI/UX harus disesuaikan dengan demografi ini.</p>
+                    <h2>2. Pilih Platform yang Tepat (iOS vs Android)</h2>
+                    <p>Di Indonesia, Android mendominasi pasar. Namun, jika target pasar Anda adalah segmen premium, iOS mungkin lebih menguntungkan. Solusi Cross-platform seperti Flutter atau React Native bisa menjadi jalan tengah yang efisien.</p>
+                    <h2>3. Fokus pada Fitur Utama (MVP)</h2>
+                    <p>Jangan mencoba memasukkan semua fitur sekaligus. Mulailah dengan Minimum Viable Product (MVP) untuk menguji pasar dengan cepat dan hemat biaya.</p>
+                    <p>Investasi di awal sebaiknya difokuskan pada fungsionalitas inti yang menyelesaikan masalah utama pengguna.</p>
+                `
+            },
+            {
+                id: 2,
+                title: 'Mengapa Website Responsif adalah Sebuah Keharusan di 2024',
+                category: 'Website',
+                image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+                author: 'Siti Rahma',
+                date: '2024-01-10',
+                readTime: '4 menit',
+                excerpt: 'Dengan lebih dari 60% traffic berasal dari mobile, website responsif bukan lagi pilihan tapi keharusan. Pelajari mengapa dan dampaknya pada SEO.',
+                content: `
+                    <p>Pernahkah Anda membuka website di HP dan harus melakukan zoom-in hanya untuk membaca teksnya? Itu adalah pengalaman yang buruk, dan Google pun membencinya.</p>
+                    <h2>Mobile-First Indexing</h2>
+                    <p>Google sekarang menggunakan versi mobile dari konten Anda untuk pengindeksan dan peringkat. Jika web Anda tidak mobile-friendly, peringkat SEO Anda akan jatuh.</p>
+                    <h2>Meningkatkan Konversi</h2>
+                    <p>Pengguna cenderung meninggalkan website yang sulit dinavigasi di ponsel. Website responsif memastikan tombol CTA mudah diklik dan formulir mudah diisi di layar kecil.</p>
+                `
+            },
+            {
+                id: 3,
+                title: 'Bagaimana UI/UX yang Baik Dapat Meningkatkan Konversi Penjualan',
+                category: 'Tips UI/UX',
+                image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+                author: 'Siti Rahma',
+                date: '2023-12-28',
+                readTime: '5 menit',
+                excerpt: 'Desain UI/UX yang baik bukan hanya soal estetika, tapi juga tentang meningkatkan konversi. Pelajari prinsip-prinsip desain yang menjual.',
+                content: `<p>Desain bukan hanya tentang apa yang terlihat, tapi bagaimana itu bekerja. UX yang buruk adalah pembunuh konversi nomor satu di toko online.</p>`
+            },
+            {
+                id: 4,
+                title: 'Keamanan Aplikasi Web: Best Practices untuk Developer',
+                category: 'Tren Teknologi',
+                image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+                author: 'Ahmad Fauzi',
+                date: '2023-12-15',
+                readTime: '8 menit',
+                excerpt: 'Keamanan adalah prioritas utama dalam pengembangan aplikasi web. Pelajari best practices untuk melindungi aplikasi Anda dari serangan siber.',
+                content: `<p>Di era digital, data adalah aset paling berharga. Kebocoran data bisa menghancurkan reputasi perusahaan dalam semalam.</p>`
+            },
+            {
+                id: 5,
+                title: 'Memahami Metode Agile dalam Pengembangan Software',
+                category: 'Tren Teknologi',
+                image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+                author: 'Dewi Lestari',
+                date: '2023-12-20',
+                readTime: '7 menit',
+                excerpt: 'Metodologi Agile telah mengubah cara tim software development bekerja. Pahami prinsip-prinsip Agile dan bagaimana menerapkannya.',
+                content: `<p>Agile bukan hanya buzzword. Ini adalah pola pikir tentang fleksibilitas dan pengiriman nilai secara bertahap kepada klien.</p>`
+            },
+            {
+                id: 6,
+                title: 'Perbedaan Pengembangan Website dengan CMS vs Custom Code',
+                category: 'Website',
+                image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+                author: 'Budi Santoso',
+                date: '2024-01-05',
+                readTime: '6 menit',
+                excerpt: 'CMS atau custom code? Kedua pendekatan memiliki kelebihan dan kekurangan. Temukan mana yang tepat untuk kebutuhan bisnis Anda.',
+                content: `<p>Banyak klien bingung memilih antara WordPress atau Custom Coding (Laravel/React). Jawabannya tergantung pada kompleksitas kebutuhan bisnis Anda.</p>`
+            }
+        ];
+
+        // Categories Configuration
+        const categories = ['Semua', 'Aplikasi Mobile', 'Website', 'Tips UI/UX', 'Tren Teknologi'];
+        let currentCategory = 'Semua';
+
+        // Initialize Page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFilters();
+            renderArticles(articles);
+        });
+
+        // Render Filter Buttons
+        function renderFilters() {
+            const container = document.getElementById('filterContainer');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterArticles('${cat}')" 
+                    class="px-6 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${currentCategory === cat ? 'bg-[#256de9] text-white shadow-md' : 'bg-white text-gray-600 hover:text-[#256de9]'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        // Render Article Cards
+        function renderArticles(data) {
+            const grid = document.getElementById('articlesGrid');
+            const empty = document.getElementById('emptyState');
+
+            if (data.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            empty.classList.add('hidden');
+            grid.innerHTML = data.map(article => `
+                <div onclick="openArticle(${article.id})" class="bg-white rounded-2xl overflow-hidden shadow-sm hover-card border border-gray-100 group cursor-pointer h-full flex flex-col">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-[#256de9] text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                            ${article.category}
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#256de9] transition-colors line-clamp-2">${article.title}</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3 flex-grow">${article.excerpt}</p>
+                        
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-100 pt-4 mt-auto">
+                            <div class="flex items-center gap-2">
+                                <i class="ph ph-user"></i> ${article.author}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="ph ph-calendar"></i> ${article.date}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="ph ph-clock"></i> ${article.readTime}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Logic
+        function filterArticles(category) {
+            currentCategory = category;
+            renderFilters(); // Re-render buttons to update active state
+            
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filtered = articles;
+            
+            // Apply Category Filter
+            if (category !== 'Semua') {
+                filtered = filtered.filter(a => a.category === category);
+            }
+
+            // Apply Search Filter (if exists)
+            if (searchVal) {
+                filtered = filtered.filter(a => 
+                    a.title.toLowerCase().includes(searchVal) || 
+                    a.excerpt.toLowerCase().includes(searchVal)
+                );
+            }
+
+            renderArticles(filtered);
+        }
+
+        // Search Logic
+        function handleSearch() {
+            filterArticles(currentCategory);
+        }
+
+        // Open Full Article (Single Page Application feel)
+        function openArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            // Populate Full View
+            document.getElementById('full-img').src = article.image;
+            document.getElementById('full-category').innerText = article.category;
+            document.getElementById('full-title').innerText = article.title;
+            document.getElementById('full-author').innerText = article.author;
+            document.getElementById('full-date').innerText = article.date;
+            document.getElementById('full-readtime').innerText = article.readTime;
+            document.getElementById('full-content').innerHTML = article.content + `<p class="mt-4">${article.excerpt}</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`;
+
+            // Switch Views
+            document.getElementById('blog-header').classList.add('hidden');
+            document.getElementById('grid-view').classList.add('hidden');
+            document.getElementById('article-view').classList.remove('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        }
+
+        // Close Article (Back to Grid)
+        function closeArticle() {
+            document.getElementById('blog-header').classList.remove('hidden');
+            document.getElementById('grid-view').classList.remove('hidden');
+            document.getElementById('article-view').classList.add('hidden');
+            
+            // Scroll back to grid area slightly
+            document.getElementById('blog-header').scrollIntoView();
+        }
+        // 5. TAMBAHAN: Page Load Blur Animation Trigger
+        // Saat konten DOM sudah siap, kita tambahkan kelas 'page-loaded' ke body
+        // untuk memicu transisi CSS (opacity 0->1 dan blur 15px->0px).
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sedikit delay agar transisi terlihat oleh mata pengguna
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>

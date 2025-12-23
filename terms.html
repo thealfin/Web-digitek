@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat dan Ketentuan - PT. Digital Teknologi Perkasa</title>
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            bg: '#f3f5ff',
+                            blue: '#256de9',
+                            dark: '#0C0C0D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+        /* Kondisi Awal: Transparan dan Blur */
+        opacity: 0;
+        filter: blur(15px);
+        /* Durasi dan tipe transisi (0.8 detik) */
+        transition: opacity 0.1s ease-out, filter 0.2s ease-out;
+        }
+
+        /* Kelas yang akan ditambahkan oleh JS */
+        body.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        body { background-color: #f3f5ff; font-family: 'Inter', sans-serif; }
+        
+        /* Custom list style for legal document */
+        .legal-list {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-list li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="media/digitek.webp" 
+                    alt="Logo Digital Teknologi Perkasa" 
+                    class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="nav-link text-[#256de9] hover:text-[#256de9] transition-colors">Beranda</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                <a href="services.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Layanan</a>
+                <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                <a href="blog.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Blog</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600">Layanan</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="contact.html" class="text-gray-600 font-semibold">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Syarat dan Ketentuan</h1>
+            <p class="text-sm md:text-base text-gray-500 font-medium bg-blue-50 inline-block px-4 py-2 rounded-full text-[#256de9]">
+                Terakhir Diperbarui: 12 Desember 2024
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            
+            <div class="bg-white rounded-2xl border border-gray-200 p-8 md:p-12 shadow-sm">
+                
+                <div class="mb-8 text-gray-600 leading-relaxed">
+                    <p class="mb-4">Selamat datang di <strong>PT. Digital Teknologi Perkasa</strong>.</p>
+                    <p class="mb-4">Harap baca Syarat dan Ketentuan ini ("Ketentuan") dengan saksama sebelum menggunakan website kami (https://digitekperkasa.com/) atau menggunakan layanan jasa pengembangan teknologi kami. Dengan mengakses website atau memesan layanan kami, Anda setuju untuk terikat oleh Ketentuan ini.</p>
+                    <p>Jika Anda tidak setuju dengan bagian mana pun dari Ketentuan ini, Anda tidak diperkenankan menggunakan layanan kami.</p>
+                </div>
+
+                <hr class="border-gray-100 my-8">
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Definisi</h2>
+                    <ul class="text-gray-600 leading-relaxed space-y-3">
+                        <li><strong>"Perusahaan", "Kami", "Kita":</strong> Merujuk pada PT. Digital Teknologi Perkasa, sebuah perusahaan teknologi yang berdomisili di Bandar Lampung, Indonesia.</li>
+                        <li><strong>"Layanan":</strong> Merujuk pada jasa pembuatan website, pengembangan aplikasi mobile, desain UI/UX, sistem informasi kustom, dan layanan pemeliharaan (maintenance) yang kami sediakan.</li>
+                        <li><strong>"Pengguna" atau "Klien":</strong> Merujuk pada individu atau entitas bisnis yang mengakses website kami atau menggunakan jasa profesional kami.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Ruang Lingkup Layanan</h2>
+                    <p class="text-gray-600 mb-4">Berdasarkan informasi yang tersedia pada platform kami, PT. Digital Teknologi Perkasa menyediakan solusi pertumbuhan digital yang mencakup namun tidak terbatas pada:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li><strong>Pengembangan Aplikasi:</strong> Pembuatan aplikasi mobile (Android/iOS) dan desktop.</li>
+                        <li><strong>Web Development:</strong> Pembuatan website responsif, company profile, dan e-commerce.</li>
+                        <li><strong>UI/UX Design:</strong> Perancangan antarmuka dan pengalaman pengguna.</li>
+                        <li><strong>Maintenance:</strong> Layanan dukungan teknis dan pemeliharaan sistem.</li>
+                    </ul>
+                    <p class="text-gray-600 bg-gray-50 p-4 rounded-lg border-l-4 border-[#256de9]">
+                        Sifat layanan kami adalah custom (kustomisasi menyeluruh), di mana spesifikasi teknis akan disepakati dalam kontrak terpisah atau penawaran kerja (Quotation) untuk setiap proyek.
+                    </p>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Penggunaan Website</h2>
+                    <p class="text-gray-600 mb-2">Saat menggunakan website kami, Anda setuju untuk:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li>Memberikan informasi yang akurat, terkini, dan lengkap saat mengisi formulir kontak (Nama, Nama Perusahaan, Email, No. WhatsApp).</li>
+                        <li>Tidak menggunakan website ini untuk tujuan ilegal atau melanggar hukum di Indonesia.</li>
+                        <li>Tidak mencoba mengganggu keamanan atau integritas sistem website kami.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Hak Kekayaan Intelektual</h2>
+                    
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">A. Konten Website</h3>
+                    <p class="text-gray-600 mb-4">
+                        Seluruh konten yang terdapat dalam website ini, termasuk namun tidak terbatas pada teks, grafik, logo, ikon, gambar (kecuali gambar stok bebas royalti), klip audio, unduhan digital, dan penyusunan data adalah milik PT. Digital Teknologi Perkasa dan dilindungi oleh undang-undang hak cipta.
+                    </p>
+
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">B. Hasil Pekerjaan (Proyek Klien)</h3>
+                    <p class="text-gray-600 mb-2">Kecuali dinyatakan lain dalam kontrak kerja spesifik:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li>Hak Kekayaan Intelektual atas produk jadi (aplikasi atau website) akan dialihkan kepada Klien setelah Klien melunasi seluruh pembayaran yang disepakati.</li>
+                        <li>PT. Digital Teknologi Perkasa berhak mencantumkan hasil pekerjaan tersebut dalam portofolio perusahaan untuk keperluan pemasaran, kecuali ada perjanjian kerahasiaan (NDA) yang disepakati sebelumnya.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Ketentuan Komersial</h2>
+                    <p class="text-gray-600 mb-2">Karena kami menyediakan jasa berbasis proyek:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li><strong>Penawaran:</strong> Harga dan jadwal pengerjaan yang tertera pada komunikasi awal bersifat estimasi. Biaya final ditentukan setelah analisis kebutuhan mendalam.</li>
+                        <li><strong>Pembayaran:</strong> Ketentuan pembayaran (Termin/Down Payment) akan diatur dalam Invoice atau Perjanjian Kerja Sama (PKS) tersendiri.</li>
+                        <li><strong>Pembatalan:</strong> Kebijakan pengembalian dana atau pembatalan proyek tunduk pada tahapan pengerjaan yang telah berjalan dan kontrak yang telah ditandatangani.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Tautan Pihak Ketiga</h2>
+                    <p class="text-gray-600 mb-4">Website kami mungkin berisi tautan ke situs web atau layanan pihak ketiga (seperti Instagram, LinkedIn, Google Maps, WhatsApp) yang tidak dimiliki atau dikendalikan oleh PT. Digital Teknologi Perkasa.</p>
+                    <p class="text-gray-600">Kami tidak memiliki kendali atas, dan tidak bertanggung jawab atas, konten, kebijakan privasi, atau praktik dari situs web atau layanan pihak ketiga mana pun.</p>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">7. Batasan Tanggung Jawab</h2>
+                    <p class="text-gray-600 mb-2">Sejauh yang diizinkan oleh hukum yang berlaku:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li>PT. Digital Teknologi Perkasa tidak bertanggung jawab atas kerugian tidak langsung, insidental, atau konsekuensial (termasuk hilangnya keuntungan atau data) yang timbul dari penggunaan layanan kami.</li>
+                        <li>Kami berusaha menjaga agar website dan layanan kami berjalan tanpa gangguan, namun kami tidak menjamin bahwa layanan akan selalu bebas dari kesalahan atau downtime server.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">8. Hukum yang Berlaku</h2>
+                    <p class="text-gray-600">Ketentuan ini diatur dan ditafsirkan sesuai dengan hukum Republik Indonesia. Setiap sengketa yang timbul sehubungan dengan Ketentuan ini akan diselesaikan di wilayah hukum tempat PT. Digital Teknologi Perkasa berdomisili (Bandar Lampung), kecuali disepakati lain.</p>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">9. Perubahan Ketentuan</h2>
+                    <p class="text-gray-600">Kami berhak, atas kebijakan kami sendiri, untuk mengubah atau mengganti Ketentuan ini setiap saat. Perubahan materiil akan kami beritahukan melalui website. Dengan terus mengakses atau menggunakan Layanan kami setelah revisi tersebut berlaku, Anda setuju untuk terikat oleh ketentuan yang telah direvisi.</p>
+                </div>
+
+                <!-- <div class="mb-0 bg-blue-50 p-8 rounded-xl border border-blue-100">
+                    <h2 class="text-xl font-bold text-[#256de9] mb-4">10. Kontak Kami</h2>
+                    <p class="text-gray-600 mb-4">Jika Anda memiliki pertanyaan tentang Syarat dan Ketentuan ini, silakan hubungi kami melalui:</p>
+                    
+                    <div class="space-y-2 text-gray-700">
+                        <p><strong>Nama Perusahaan:</strong> PT. Digital Teknologi Perkasa</p>
+                        <p><strong>Alamat:</strong> Perum Graha Madu Pesona Blok C No.31, Kec. Tj. Senang, Kota Bandar Lampung.</p>
+                        <p><strong>Email:</strong> digitalteknologiperkasa.lampung@gmail.com</p>
+                        <p><strong>WhatsApp:</strong> +62 858-3984-5284</p>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="media/digitek.webp" alt="Logo" class="w-9 h-9 object-contain">
+                        <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-[#256de9] transition-colors">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                        <li><a href="blog.html" class="hover:text-[#256de9] transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>+62 858-3984-5284</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="privacy-policy.html" class="hover:text-[#256de9] transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-[#256de9] font-semibold transition-colors">Terms of Service</a>
+                    <a href="faq.html" class="hover:text-[#256de9] transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        // 2. Navbar Effect on Scroll & Scroll Spy
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener('scroll', () => {
+            // Navbar Shadow Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+
+            // Scroll Spy
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("text-[#256de9]", "font-bold");
+                link.classList.add("text-gray-600");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.remove("text-gray-600");
+                    link.classList.add("text-[#256de9]", "font-bold");
+                }
+            });
+        });
+        // 5. TAMBAHAN: Page Load Blur Animation Trigger
+        // Saat konten DOM sudah siap, kita tambahkan kelas 'page-loaded' ke body
+        // untuk memicu transisi CSS (opacity 0->1 dan blur 15px->0px).
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sedikit delay agar transisi terlihat oleh mata pengguna
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>

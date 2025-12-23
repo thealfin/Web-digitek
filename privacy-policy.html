@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Privasi - PT. Digital Teknologi Perkasa</title>
+    
+    <link rel="icon" href="media/digitek putih.webp" type="image/png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            bg: '#f3f5ff',
+                            blue: '#256de9',
+                            dark: '#0C0C0D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+        /* Kondisi Awal: Transparan dan Blur */
+        opacity: 0;
+        filter: blur(15px);
+        /* Durasi dan tipe transisi (0.8 detik) */
+        transition: opacity 0.1s ease-out, filter 0.2s ease-out;
+        }
+
+        /* Kelas yang akan ditambahkan oleh JS */
+        body.page-loaded {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        body { background-color: #f3f5ff; font-family: 'Inter', sans-serif; }
+        
+        /* Custom list style for legal document */
+        .legal-list {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-list li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="media/digitek.webp" 
+                    alt="Logo Digital Teknologi Perkasa" 
+                    class="w-10 h-10 object-contain hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-bold text-gradient-dark tracking-tight">Digital Teknologi Perkasa</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="nav-link text-[#256de9] hover:text-[#256de9] transition-colors">Beranda</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Tentang Kami</a>
+                <a href="services.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Layanan</a>
+                <a href="portfolio.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Portofolio</a>
+                <a href="blog.html" class="nav-link text-gray-600 hover:text-[#256de9] transition-colors">Blog</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-[#256de9] text-white rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Beranda</a>
+                <a href="about.html" class="text-gray-600 hover:text-blue-600">Tentang Kami</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600">Layanan</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-blue-600">Portofolio</a>
+                <a href="blog.html" class="text-gray-600 hover:text-blue-600">Blog</a>
+                <a href="contact.html" class="text-gray-600 font-semibold">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Kebijakan Privasi</h1>
+            <p class="text-sm md:text-base text-gray-500 font-medium bg-blue-50 inline-block px-4 py-2 rounded-full text-[#256de9]">
+                Terakhir Diperbarui: 12 Desember 2024
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            
+            <div class="bg-white rounded-2xl border border-gray-200 p-8 md:p-12 shadow-sm">
+                
+                <div class="mb-8 text-gray-600 leading-relaxed">
+                    <p class="mb-4">Di <strong>PT. Digital Teknologi Perkasa</strong> ("Kami", "Kita"), privasi Anda adalah prioritas. Kebijakan Privasi ini menjelaskan transparansi mengenai informasi apa yang kami kumpulkan, alasan kami mengumpulkannya, dan bagaimana kami melindungi hak-hak Anda saat Anda menggunakan layanan pengembangan teknologi atau mengunjungi situs web kami.</p>
+                    <p>Dengan menggunakan layanan kami, Anda menyetujui praktik data yang dijelaskan dalam kebijakan ini.</p>
+                </div>
+
+                <hr class="border-gray-100 my-8">
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Informasi yang Kami Kumpulkan</h2>
+                    <p class="text-gray-600 mb-4">Kami mengumpulkan informasi untuk memberikan layanan terbaik kepada semua pengguna kami. Jenis data yang kami kumpulkan meliputi:</p>
+
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">A. Informasi yang Anda Berikan</h3>
+                    <ul class="legal-list text-gray-600">
+                        <li><strong>Data Identitas & Kontak:</strong> Nama lengkap, alamat email, nomor telepon/WhatsApp, dan nama perusahaan saat Anda mengisi formulir konsultasi.</li>
+                        <li><strong>Data Proyek:</strong> Brief proyek, aset desain, kredensial akses server (jika diperlukan untuk deployment), dan dokumen spesifikasi kebutuhan sistem.</li>
+                        <li><strong>Komunikasi:</strong> Catatan korespondensi antara Anda dan tim kami melalui email atau chat.</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold text-gray-700 mb-2 mt-6">B. Informasi yang Kami Kumpulkan Secara Otomatis</h3>
+                    <ul class="legal-list text-gray-600">
+                        <li><strong>Log Teknis:</strong> Alamat IP, jenis browser, halaman perujuk/keluar, dan stempel waktu kunjungan untuk analisis keamanan server.</li>
+                        <li><strong>Cookies & Tracking:</strong> Kami menggunakan cookies esensial untuk memastikan fungsionalitas website berjalan lancar dan cookies analitik (seperti Google Analytics) untuk memahami interaksi pengguna.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Mengapa Kami Menggunakan Data Anda</h2>
+                    <p class="text-gray-600 mb-4">Kami menggunakan informasi tersebut untuk tujuan bisnis yang sah, meliputi:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li><strong>Pelaksanaan Layanan:</strong> Membangun, mengembangkan, dan memelihara aplikasi atau website sesuai kontrak kerja sama.</li>
+                        <li><strong>Komunikasi & Support:</strong> Menghubungi Anda terkait update proyek, tagihan, atau merespons permintaan teknis.</li>
+                        <li><strong>Keamanan:</strong> Mendeteksi dan mencegah aktivitas penipuan atau penyalahgunaan pada sistem kami.</li>
+                        <li><strong>Peningkatan Kualitas:</strong> Menganalisis tren penggunaan untuk meningkatkan pengalaman pengguna (UI/UX).</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Berbagi & Pengungkapan Informasi</h2>
+                    <p class="text-gray-600 mb-4">Kami tidak menjual data pribadi Anda. Kami hanya membagikan informasi dalam keadaan berikut:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li><strong>Vendor Pihak Ketiga:</strong> Penyedia layanan hosting (misal: AWS, Google Cloud), domain registrar, atau layanan analitik yang terikat kewajiban kerahasiaan.</li>
+                        <li><strong>Kewajiban Hukum:</strong> Jika diperlukan untuk mematuhi hukum yang berlaku, proses hukum, atau permintaan pemerintah yang sah di Indonesia.</li>
+                        <li><strong>Persetujuan Anda:</strong> Kami dapat membagikan informasi jika Anda memberikan izin eksplisit (misal: menampilkan proyek Anda dalam portofolio publik kami).</li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Keamanan & Retensi Data</h2>
+                    <p class="text-gray-600 leading-relaxed">
+                        Kami menerapkan standar keamanan industri (termasuk enkripsi SSL/TLS) untuk melindungi data Anda. Data proyek disimpan selama durasi kerja sama dan masa pemeliharaan (maintenance), atau sesuai dengan ketentuan hukum yang berlaku. Meskipun demikian, tidak ada metode transmisi internet yang 100% aman.
+                    </p>
+                </div>
+
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Hak Privasi Anda</h2>
+                    <p class="text-gray-600 mb-4">Sebagai pengguna, Anda memiliki hak untuk:</p>
+                    <ul class="legal-list text-gray-600">
+                        <li>Meminta salinan data pribadi yang kami simpan tentang Anda.</li>
+                        <li>Meminta koreksi atas data yang tidak akurat.</li>
+                        <li>Meminta penghapusan data pribadi Anda ("Hak untuk Dilupakan"), kecuali kami diwajibkan menyimpannya untuk keperluan hukum atau kontrak aktif.</li>
+                    </ul>
+                </div>
+
+                <!-- <div class="mb-0 bg-blue-50 p-8 rounded-xl border border-blue-100">
+                    <h2 class="text-xl font-bold text-[#256de9] mb-4">6. Kontak Kami</h2>
+                    <p class="text-gray-600 mb-4">Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini atau pengelolaan data Anda, silakan hubungi kami:</p>
+                    
+                    <div class="space-y-2 text-gray-700">
+                        <p><strong>PT. Digital Teknologi Perkasa</strong></p>
+                        <p><strong>Alamat:</strong> Perum Graha Madu Pesona Blok C No.31, Kec. Tj. Senang, Kota Bandar Lampung</p>
+                        <p><strong>Email:</strong> digitalteknologiperkasa.lampung@gmail.com</p>
+                        <p><strong>WhatsApp:</strong> +62 858-3984-5284</p>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="media/digitek.webp" alt="Logo" class="w-9 h-9 object-contain">
+                        <span class="font-bold text-gray-800">Digital Teknologi Perkasa</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Mitra teknologi terdepan yang membantu bisnis Anda bertransformasi dan tumbuh di era digital melalui solusi software berkualitas.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="index.html" class="hover:text-[#256de9] transition-colors">Beranda</a></li>
+                        <li><a href="about.html" class="hover:text-[#256de9] transition-colors">Tentang Kami</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#256de9] transition-colors">Portofolio</a></li>
+                        <li><a href="blog.html" class="hover:text-[#256de9] transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Mobile Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">Web Development</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">UI/UX Design</a></li>
+                        <li><a href="services.html" class="hover:text-[#256de9] transition-colors">IT Consultant</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-600">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-envelope text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span class="break-all">digitalteknologiperkasa.lampung@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-whatsapp-logo text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>+62 858-3984-5284</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-[#256de9] text-lg mt-0.5 shrink-0"></i>
+                            <span>Perum Graha Madu Pesona Blok C No.31 Kec. Tj. Senang Kota Bandar Lampung</span> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2024 PT. Digital Teknologi Perkasa. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="#" class="text-[#256de9] font-semibold transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-[#256de9] transition-colors">Terms of Service</a>
+                    <a href="faq.html" class="hover:text-[#256de9] transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        // 2. Navbar Effect on Scroll & Scroll Spy
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener('scroll', () => {
+            // Navbar Shadow Effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-2');
+                navbar.classList.add('py-4');
+            }
+
+            // Scroll Spy
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("text-[#256de9]", "font-bold");
+                link.classList.add("text-gray-600");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.remove("text-gray-600");
+                    link.classList.add("text-[#256de9]", "font-bold");
+                }
+            });
+        });
+        // 5. TAMBAHAN: Page Load Blur Animation Trigger
+        // Saat konten DOM sudah siap, kita tambahkan kelas 'page-loaded' ke body
+        // untuk memicu transisi CSS (opacity 0->1 dan blur 15px->0px).
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sedikit delay agar transisi terlihat oleh mata pengguna
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+            }, 50);
+        });
+    </script>
+</body>
+</html>
